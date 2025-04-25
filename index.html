@@ -6,7 +6,7 @@
     <title>HBD love</title>
 
     <link type="text/css" rel="stylesheet" href="./file/default.css" />
-    
+
     <script type="text/javascript" src="./file/jquery.min.js"></script>
     <script type="text/javascript" src="./file/jscex.min.js"></script>
     <script type="text/javascript" src="./file/jscex-parser.js"></script>
@@ -22,6 +22,20 @@
             var audio = document.getElementById("myAudio");
             audio.play();
         }
+
+        function resizeCanvas() {
+            var canvas = document.getElementById('canvas');
+            if (canvas) {
+                var parentWidth = canvas.parentElement.offsetWidth;
+                var aspectRatio = 680 / 1100; // original ratio
+                var newHeight = parentWidth * aspectRatio;
+                canvas.width = parentWidth;
+                canvas.height = newHeight;
+            }
+        }
+
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
     </script>
 </head>
 <body>
