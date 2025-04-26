@@ -1,174 +1,271 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>การ์ดอวยพรวันเกิด</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การ์ดอวยพรวันเกิด</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .card, .login {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      padding: 30px 20px;
-      max-width: 100%;
-      width: 400px;
-      text-align: center;
-      animation: fadeIn 1s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
 
-    .login { display: block; }
-    .card { display: none; }
+        .card,
+        .login {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 30px 20px;
+            max-width: 100%;
+            width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+            position: relative;
+            z-index: 1;
+        }
 
-    h1, h2 {
-      color: #ff6ec4;
-    }
+        .login {
+            display: block;
+        }
 
-    p {
-      font-size: 18px;
-      color: #444;
-      margin-top: 15px;
-    }
+        .card {
+            display: none;
+        }
 
-    input[type="password"] {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 10px;
-    }
+        h1,
+        h2 {
+            color: #ff6ec4;
+        }
 
-    button {
-      background-color: #ff6ec4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 16px;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        p {
+            font-size: 18px;
+            color: #444;
+            margin-top: 15px;
+        }
 
-    button:hover {
-      background-color: #ff3fa4;
-    }
+        input[type="password"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
 
-    .confetti {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
+        button {
+            background-color: #ff6ec4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        button:hover {
+            background-color: #ff3fa4;
+        }
 
-    @media (max-width: 500px) {
-      h1, h2 { font-size: 20px; }
-      p { font-size: 16px; }
-    }
-  </style>
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .floating-img {
+            position: absolute;
+            animation: float linear infinite;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 500px) {
+
+            h1,
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="login" id="loginBox">
-    <h2>ใส่รหัสเพื่อดูการ์ด 🎁</h2>
-    <input type="password" id="password" placeholder="รหัสผ่าน">
-    <br>
-    <button onclick="checkPassword()">เข้าสู่การ์ด</button>
-  </div>
+    <!-- แท็กเล่นเพลง -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mpeg">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+  </audio>
 
-  <div class="card" id="cardBox">
-    <canvas class="confetti" id="confetti"></canvas>
-    <h1>สุขสันต์วันเกิด! 🎉</h1>
-    <p id="message">ขอให้วันนี้เต็มไปด้วยรอยยิ้มและความสุข 💖</p>
-    <button onclick="changeMessage(); showConfetti();">คลิกเพื่อรับคำอวยพรเพิ่ม</button>
-  </div>
+    <!-- ลอยลูกโป่งและเค้ก -->
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 10%; width: 80px; animation-duration: 12s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 30%; width: 80px; animation-duration: 15s; animation-delay: 1s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 50%; width: 80px; animation-duration: 10s; animation-delay: 2s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 70%; width: 80px; animation-duration: 13s; animation-delay: 3s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 90%; width: 80px; animation-duration: 11s; animation-delay: 0.5s;">
 
-  <script>
-    const passwordCorrect = "grxfe_jj";
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 40%; width: 80px; animation-duration: 12s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 60%; width: 80px; animation-duration: 15s; animation-delay: 1s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 100%; width: 80px; animation-duration: 10s; animation-delay: 2s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 50%; width: 80px; animation-duration: 13s; animation-delay: 3s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20230221231521.png"
+        class="floating-img" style="left: 60%; width: 80px; animation-duration: 11s; animation-delay: 0.5s;">
 
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      if (input === passwordCorrect) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("cardBox").style.display = "block";
-        showConfetti();
-      } else {
-        alert("รหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้งนะ!");
-      }
-    }
+    <!-- เพิ่มเค้ก -->
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20241111002200.png"
+        class="floating-img" style="left: 20%; width: 70px; animation-duration: 18s; animation-delay: 2s;">
+    <img src="https://www.pngbie.com/assets/images/icon/Pngbie-%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9F%E0%B8%A3%E0%B8%B5-20241111002200.png"
+        class="floating-img" style="left: 80%; width: 70px; animation-duration: 17s; animation-delay: 4s;">
 
-    const messages = [
-      "ขอให้สมหวังในทุกสิ่งที่ปรารถนา 🎂",
-      "ขอให้มีสุขภาพแข็งแรง และร่ำรวยความสุข 🥳",
-      "ชีวิตสดใสเหมือนสายรุ้งหลังฝน 🌈",
-      "ขอให้มีแต่สิ่งดี ๆ เข้ามาในชีวิตนะ 💫",
-      "ทุกย่างก้าวเต็มไปด้วยพลังและความรัก 💝",
-      "ขอให้ได้รับความรักจากคนรอบข้างเสมอ 💕",
-      "ขอให้มีแรงบันดาลใจใหม่ ๆ ในทุกวัน 🌟"
-    ];
+    <div class="login" id="loginBox">
+        <h2>คือไรหว่าา🎁</h2>
+        <input type="password" id="password" placeholder="รหัสผ่าน">
+        <br>
+        <button onclick="checkPassword()">เข้าสู่การ์ด</button>
+    </div>
 
-    let index = 0;
-    function changeMessage() {
-      index = (index + 1) % messages.length;
-      document.getElementById('message').textContent = messages[index];
-    }
+    <div class="card" id="cardBox">
+        <canvas class="confetti" id="confetti"></canvas>
+        <h1>สุขสันต์วันเกิดนะค้าบ 🎉</h1>
+        <p id="message">ขอให้วันนี้เต็มไปด้วยรอยยิ้มและความสุข 💖 </p>
+        <p id="message"> เจอกันที่วัดไร่ขิง อิอิ </p>
+        <button onclick="changeMessage(); showConfetti();">คลิกเพื่อรับคำอวยพรเพิ่ม</button>
+    </div>
 
-    // Confetti animation
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    let confetti = [];
+    <script>
+        const passwordCorrect = "grxfe_jj";
 
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
+        function checkPassword() {
+            const input = document.getElementById("password").value;
+            if (input === passwordCorrect) {
+              document.getElementById("loginBox").style.display = "none";
+              document.getElementById("cardBox").style.display = "block";
+              showConfetti();
+          
+              // เล่นเพลง
+              const music = document.getElementById("bgMusic");
+              music.play();
+            } else {
+              alert("รหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้งนะ!");
+            }
+          }
+          
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+        const messages = [
+            "ขอให้สมหวังในทุกสิ่งที่ปรารถนา 🎂",
+            "ขอให้มีสุขภาพแข็งแรง และร่ำรวยความสุข 🥳",
+            "ชีวิตสดใสเหมือนสายรุ้งหลังฝน 🌈",
+            "ขอให้มีแต่สิ่งดี ๆ เข้ามาในชีวิตนะ 💫",
+            "หวั่นไหวเมื่ออายุเข้าใกล้เลข 3 😂",
+            "ขอให้วันพิเศษนี้เป็นวันที่สวยงามของเธอ 💕",
+            "ขอให้มีแรงบันดาลใจใหม่ ๆ ในทุกวัน 🌟",
+            "ไม่ต้องบอกก็รู้ว่าวันนี้วันอะไร รู้ด้วยว่ามีใครแก่ขึ้นอีก 1 ปี Happy Birthday🤣"
+        ];
 
-    function showConfetti() {
-      confetti = Array.from({ length: 150 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height - canvas.height,
-        r: Math.random() * 6 + 4,
-        d: Math.random() * 50 + 10,
-        color: `hsl(${Math.random() * 360}, 100%, 70%)`
-      }));
-      animate();
-    }
+        let index = 0;
+        function changeMessage() {
+            index = (index + 1) % messages.length;
+            document.getElementById('message').textContent = messages[index];
+            showConfetti(true);
+        }
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confetti.forEach((c, i) => {
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-        ctx.fillStyle = c.color;
-        ctx.fill();
-        c.y += Math.sqrt(c.r) + 2;
-        if (c.y > canvas.height) c.y = -10;
-      });
-      if (confetti.length) requestAnimationFrame(animate);
-    }
-  </script>
+        const canvas = document.getElementById("confetti");
+        const ctx = canvas.getContext("2d");
+        let confetti = [];
+        let isAnimating = false;
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        function showConfetti(fromClick = false) {
+            if (isAnimating && fromClick) return;
+            confetti = Array.from({ length: 100 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                r: Math.random() * 6 + 4,
+                d: Math.random() * 50 + 10,
+                color: `hsl(${Math.random() * 360}, 100%, 70%)`
+            }));
+            isAnimating = true;
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confetti.forEach((c, i) => {
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+                c.y += Math.sqrt(c.r) + 2;
+                if (c.y > canvas.height) c.y = -10;
+            });
+            if (confetti.length) {
+                requestAnimationFrame(() => {
+                    animate();
+                    isAnimating = false;
+                });
+            }
+        }
+    </script>
 </body>
+
 </html>
