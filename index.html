@@ -1,206 +1,174 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="th">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HBD love</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>การ์ดอวยพรวันเกิด</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
 
-    <link type="text/css" rel="stylesheet" href="./file/default.css" />
+    .card, .login {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      padding: 30px 20px;
+      max-width: 100%;
+      width: 400px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-    <script type="text/javascript" src="./file/jquery.min.js"></script>
-    <script type="text/javascript" src="./file/jscex.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-parser.js"></script>
-    <script type="text/javascript" src="./file/jscex-jit.js"></script>
-    <script type="text/javascript" src="./file/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./file/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./file/love.js" charset="utf-8"></script>
+    .login { display: block; }
+    .card { display: none; }
 
-    <script>
-        function playAudio() {
-            var audio = document.getElementById("myAudio");
-            audio.play();
-        }
+    h1, h2 {
+      color: #ff6ec4;
+    }
 
-        function resizeCanvas() {
-            var canvas = document.getElementById('canvas');
-            if (canvas) {
-                var parentWidth = canvas.parentElement.offsetWidth;
-                var aspectRatio = 680 / 1100; // original ratio
-                var newHeight = parentWidth * aspectRatio;
-                canvas.width = parentWidth;
-                canvas.height = newHeight;
-            }
-        }
+    p {
+      font-size: 18px;
+      color: #444;
+      margin-top: 15px;
+    }
 
-        window.addEventListener('load', resizeCanvas);
-        window.addEventListener('resize', resizeCanvas);
-    </script>
+    input[type="password"] {
+      padding: 10px;
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #ff6ec4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff3fa4;
+    }
+
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      h1, h2 { font-size: 20px; }
+      p { font-size: 16px; }
+    }
+  </style>
 </head>
 <body>
-    <div id="main">
-        <div id="error">
-            <a href="https://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>
-            (<a href="http://firefox.com.cn/download/">Firefox</a>)
-        </div>
+  <div class="login" id="loginBox">
+    <h2>ใส่รหัสเพื่อดูการ์ด 🎁</h2>
+    <input type="password" id="password" placeholder="รหัสผ่าน">
+    <br>
+    <button onclick="checkPassword()">เข้าสู่การ์ด</button>
+  </div>
 
-        <audio autoplay="autoplay" height="100" width="100" id="myAudio">
-            <source src="aud.mp3" type="audio/mp3" />
-            <embed height="100" width="100" src="aud.mp3" />
-        </audio>
+  <div class="card" id="cardBox">
+    <canvas class="confetti" id="confetti"></canvas>
+    <h1>สุขสันต์วันเกิด! 🎉</h1>
+    <p id="message">ขอให้วันนี้เต็มไปด้วยรอยยิ้มและความสุข 💖</p>
+    <button onclick="changeMessage(); showConfetti();">คลิกเพื่อรับคำอวยพรเพิ่ม</button>
+  </div>
 
-        <div id="wrap">
-            <div id="text">
-                <div id="code">
-                    <span class="say">อิอิ</span><br />
-                    <span class="say">สุขสันต์วันเกิดนะ! 🎂</span><br />
-                    <span class="say">ปีนี้ต้องดีกว่าปีที่แล้วแน่นอน!</span><br />
-                    <span class="say">ขอให้ปีนี้มีสุขภาพที่ดี มีความสุข ความเจริญก้าวหน้า</span><br />
-                    <span class="say">เฮงๆ รวยๆ ปังๆ</span><br />
-                </div>
-            </div>
+  <script>
+    const passwordCorrect = "grxfe_jj";
 
-            <div id="clock-box">
-                <span id="clock">577 days 0 hours 0 minutes 0 seconds</span>
-            </div>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === passwordCorrect) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("cardBox").style.display = "block";
+        showConfetti();
+      } else {
+        alert("รหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้งนะ!");
+      }
+    }
 
-            <canvas id="canvas" width="1100" height="680"></canvas>
-        </div>
-    </div>
+    const messages = [
+      "ขอให้สมหวังในทุกสิ่งที่ปรารถนา 🎂",
+      "ขอให้มีสุขภาพแข็งแรง และร่ำรวยความสุข 🥳",
+      "ชีวิตสดใสเหมือนสายรุ้งหลังฝน 🌈",
+      "ขอให้มีแต่สิ่งดี ๆ เข้ามาในชีวิตนะ 💫",
+      "ทุกย่างก้าวเต็มไปด้วยพลังและความรัก 💝",
+      "ขอให้ได้รับความรักจากคนรอบข้างเสมอ 💕",
+      "ขอให้มีแรงบันดาลใจใหม่ ๆ ในทุกวัน 🌟"
+    ];
 
-    <script>
-    (function () {
-        var canvas = $('#canvas');
+    let index = 0;
+    function changeMessage() {
+      index = (index + 1) % messages.length;
+      document.getElementById('message').textContent = messages[index];
+    }
 
-        if (!canvas[0].getContext) {
-            $("#error").show();
-            return false;
-        }
+    // Confetti animation
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    let confetti = [];
 
-        var width = canvas.width();
-        var height = canvas.height();
-        canvas.attr("width", width);
-        canvas.attr("height", height);
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
 
-        var opts = {
-            seed: {
-                x: width / 2 - 20,
-                color: "rgb(190, 26, 37)",
-                scale: 2
-            },
-            branch: [
-                [535, 680, 570, 250, 500, 200, 30, 100, [
-                    [540, 500, 455, 417, 340, 400, 13, 100, [
-                        [450, 435, 434, 430, 394, 395, 2, 40]
-                    ]],
-                    [550, 445, 600, 356, 680, 345, 12, 100, [
-                        [578, 400, 648, 409, 661, 426, 3, 80]
-                    ]],
-                    [539, 281, 537, 248, 534, 217, 3, 40],
-                    [546, 397, 413, 247, 328, 244, 9, 80, [
-                        [427, 286, 383, 253, 371, 205, 2, 40],
-                        [498, 345, 435, 315, 395, 330, 4, 60]
-                    ]],
-                    [546, 357, 608, 252, 678, 221, 6, 100, [
-                        [590, 293, 646, 277, 648, 271, 2, 80]
-                    ]]
-                ]]
-            ],
-            bloom: {
-                num: 700,
-                width: 1080,
-                height: 650,
-            },
-            footer: {
-                width: 1200,
-                height: 5,
-                speed: 10,
-            }
-        };
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
 
-        var tree = new Tree(canvas[0], width, height, opts);
-        var seed = tree.seed;
-        var foot = tree.footer;
-        var hold = 1;
+    function showConfetti() {
+      confetti = Array.from({ length: 150 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 50 + 10,
+        color: `hsl(${Math.random() * 360}, 100%, 70%)`
+      }));
+      animate();
+    }
 
-        canvas.click(function (e) {
-            playAudio();
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            if (seed.hover(x, y)) {
-                hold = 0;
-                canvas.unbind("click");
-                canvas.unbind("mousemove");
-                canvas.removeClass('hand');
-            }
-        }).mousemove(function (e) {
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            canvas.toggleClass('hand', seed.hover(x, y));
-        });
-
-        var seedAnimate = eval(Jscex.compile("async", function () {
-            seed.draw();
-            while (hold) {
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canScale()) {
-                seed.scale(0.95);
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canMove()) {
-                seed.move(0, 2);
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-        }));
-
-        var growAnimate = eval(Jscex.compile("async", function () {
-            do {
-                tree.grow();
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canGrow());
-        }));
-
-        var flowAnimate = eval(Jscex.compile("async", function () {
-            do {
-                tree.flower(2);
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canFlower());
-        }));
-
-        var moveAnimate = eval(Jscex.compile("async", function () {
-            tree.snapshot("p1", 240, 0, 610, 680);
-            while (tree.move("p1", 500, 0)) {
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-            foot.draw();
-            tree.snapshot("p2", 500, 0, 610, 680);
-
-            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-            canvas.css("background", "#ffe");
-            $await(Jscex.Async.sleep(300));
-            canvas.css("background", "none");
-        }));
-
-        var textAnimate = eval(Jscex.compile("async", function () {
-            $("#code").show().typewriter();
-        }));
-
-        var runAsync = eval(Jscex.compile("async", function () {
-            $await(seedAnimate());
-            $await(growAnimate());
-            $await(flowAnimate());
-            $await(moveAnimate());
-            textAnimate().start();
-        }));
-
-        runAsync().start();
-    })();
-    </script>
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach((c, i) => {
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+        ctx.fillStyle = c.color;
+        ctx.fill();
+        c.y += Math.sqrt(c.r) + 2;
+        if (c.y > canvas.height) c.y = -10;
+      });
+      if (confetti.length) requestAnimationFrame(animate);
+    }
+  </script>
 </body>
 </html>
