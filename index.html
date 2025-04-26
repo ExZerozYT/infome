@@ -237,7 +237,7 @@
 
         function showConfetti(fromClick = false) {
             if (isAnimating && fromClick) return;
-            confetti = Array.from({ length: 100 }, () => ({
+            confetti = Array.from({ length: 20 }, () => ({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height - canvas.height,
                 r: Math.random() * 6 + 4,
