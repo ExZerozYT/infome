@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark😎 - โปรแกรมเมอร์ฟรีแลนซ์</title>
+    <title>Mark - โปรแกรมเมอร์ฟรีแลนซ์</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,7 +13,7 @@
             box-sizing: border-box;
         }
 
-                /* Smooth Scroll */
+        /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
         }
@@ -44,8 +45,15 @@
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         /* Shooting Stars */
@@ -54,6 +62,7 @@
                 transform: translateX(0) translateY(0);
                 opacity: 1;
             }
+
             100% {
                 transform: translateX(-1000px) translateY(500px);
                 opacity: 0;
@@ -141,6 +150,42 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+            animation: highlightPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scaleX(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
@@ -158,10 +203,12 @@
         }
 
         @keyframes blink {
-            50% { border-color: transparent; }
+            50% {
+                border-color: transparent;
+            }
         }
 
-        .hero-content > p {
+        .hero-content>p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: rgba(255, 255, 255, 0.85);
@@ -187,7 +234,7 @@
             top: -15%;
             left: -15%;
             border-radius: 50%;
-            background: 
+            background:
                 radial-gradient(circle at 50% 50%, transparent 35%, rgba(102, 126, 234, 0.6) 40%, rgba(118, 75, 162, 0.5) 50%, rgba(76, 35, 102, 0.4) 60%, transparent 75%),
                 radial-gradient(circle at 50% 50%, rgba(20, 20, 40, 0.9) 0%, rgba(10, 10, 20, 0.7) 30%, transparent 45%);
             filter: blur(20px);
@@ -199,9 +246,11 @@
             0% {
                 transform: rotate(0deg) scale(1);
             }
+
             50% {
                 transform: rotate(180deg) scale(1.05);
             }
+
             100% {
                 transform: rotate(360deg) scale(1);
             }
@@ -215,19 +264,17 @@
             top: -20%;
             left: -20%;
             border-radius: 50%;
-            background: conic-gradient(
-                from 0deg,
-                transparent 0%,
-                rgba(102, 126, 234, 0.3) 10%,
-                rgba(118, 75, 162, 0.4) 20%,
-                rgba(150, 50, 200, 0.3) 30%,
-                transparent 40%,
-                transparent 60%,
-                rgba(102, 126, 234, 0.3) 70%,
-                rgba(118, 75, 162, 0.4) 80%,
-                rgba(150, 50, 200, 0.3) 90%,
-                transparent 100%
-            );
+            background: conic-gradient(from 0deg,
+                    transparent 0%,
+                    rgba(102, 126, 234, 0.3) 10%,
+                    rgba(118, 75, 162, 0.4) 20%,
+                    rgba(150, 50, 200, 0.3) 30%,
+                    transparent 40%,
+                    transparent 60%,
+                    rgba(102, 126, 234, 0.3) 70%,
+                    rgba(118, 75, 162, 0.4) 80%,
+                    rgba(150, 50, 200, 0.3) 90%,
+                    transparent 100%);
             animation: accretionSpin 6s linear infinite;
             filter: blur(15px);
             z-index: 0;
@@ -237,6 +284,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -256,10 +304,13 @@
         }
 
         @keyframes horizonPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 0.7;
             }
+
             50% {
                 transform: scale(1.03);
                 opacity: 0.9;
@@ -275,7 +326,7 @@
             left: -25%;
             border-radius: 50%;
             border: 2px solid transparent;
-            background: 
+            background:
                 radial-gradient(circle at 50% 50%, transparent 45%, rgba(102, 126, 234, 0.2) 48%, transparent 51%),
                 radial-gradient(circle at 50% 50%, transparent 55%, rgba(118, 75, 162, 0.15) 58%, transparent 61%);
             animation: lensingEffect 5s ease-in-out infinite;
@@ -283,10 +334,13 @@
         }
 
         @keyframes lensingEffect {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 0.6;
             }
+
             50% {
                 transform: scale(1.05);
                 opacity: 1;
@@ -294,8 +348,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
         }
 
         .profile-img {
@@ -417,12 +480,29 @@
             background: rgba(102, 126, 234, 0.1);
         }
 
-        .skill-icon.html { color: #E34F26; }
-        .skill-icon.js { color: #F7DF1E; }
-        .skill-icon.python { color: #3776AB; }
-        .skill-icon.react { color: #61DAFB; }
-        .skill-icon.lua { color: #2C2D72; }
-        .skill-icon.cpp { color: #00599C; }
+        .skill-icon.html {
+            color: #E34F26;
+        }
+
+        .skill-icon.js {
+            color: #F7DF1E;
+        }
+
+        .skill-icon.python {
+            color: #3776AB;
+        }
+
+        .skill-icon.react {
+            color: #61DAFB;
+        }
+
+        .skill-icon.lua {
+            color: #2C2D72;
+        }
+
+        .skill-icon.cpp {
+            color: #00599C;
+        }
 
         .skill-name {
             font-size: 1.3rem;
@@ -500,10 +580,21 @@
         }
 
         @media (max-width: 480px) {
-            body { padding: 15px 5px; }
-            .container { padding: 20px; }
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1.1rem; }
+            body {
+                padding: 15px 5px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
 
             .spotify-player {
                 max-width: 100%;
@@ -517,6 +608,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Parallax Stars Background -->
     <div class="stars" id="stars"></div>
@@ -524,12 +616,13 @@
     <div class="container">
         <header>
             <div class="logo">
-                <span style="color: #FF5F57;">🔴</span><span style="color: #FFBD2E;">🟡</span><span style="color: #28CA42;">🟢</span>
+                <span style="color: #FF5F57;">🔴</span><span style="color: #FFBD2E;">🟡</span><span
+                    style="color: #28CA42;">🟢</span>
             </div>
             <nav>
                 <a href="#home">หน้าแรก</a>
                 <a href="#skills">ทักษะ</a>
-                
+
             </nav>
         </header>
 
@@ -537,7 +630,8 @@
             <div class="hero-content">
                 <h1>สวัสดี ผมชื่อ <span class="highlight">มาร์ค</span></h1>
                 <p class="subtitle"><span class="typing-text" id="typing"></span></p>
-                <p>ยินดีต้อนรับสู่พอร์ตโฟลิโอของผม ผมเป็นโปรแกรมเมอร์ฟรีแลนซ์ที่เชี่ยวชาญด้านการพัฒนาเว็บแอปพลิเคชัน Web Development และ Full Stack พร้อมสร้างสรรค์โปรเจกต์ที่ตอบโจทย์ธุรกิจของคุณด้วยเทคโนโลยีที่ทันสมัย</p>
+                <p>ยินดีต้อนรับสู่พอร์ตโฟลิโอของผม ผมเป็นโปรแกรมเมอร์ฟรีแลนซ์ที่เชี่ยวชาญด้านการพัฒนาเว็บแอปพลิเคชัน Web
+                    Development และ Full Stack พร้อมสร้างสรรค์โปรเจกต์ที่ตอบโจทย์ธุรกิจของคุณด้วยเทคโนโลยีที่ทันสมัย</p>
 
                 <div class="social-icons">
                     <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -547,16 +641,13 @@
                     <a href="#" class="social-icon" title="Xbox"><i class="fab fa-xbox"></i></a>
                 </div>
 
-                
+
 
                 <div class="spotify-player">
-                    <iframe style="border-radius:12px" 
-                        src="https://open.spotify.com/embed/album/1f2s3KUwsPLLy22vbOXg7g?utm_source=generato" 
-                        width="100%" 
-                        height="152" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    <iframe style="border-radius:12px"
+                        src="https://open.spotify.com/embed/album/1f2s3KUwsPLLy22vbOXg7g?utm_source=generato"
+                        width="100%" height="152" frameBorder="0" allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                         loading="lazy">
                     </iframe>
                 </div>
@@ -753,4 +844,5 @@
         });
     </script>
 </body>
+
 </html>
