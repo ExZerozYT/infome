@@ -1,14 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex - Script Writer Portfolio</title>
+    <title>Mark - โปรแกรมเมอร์ฟรีแลนซ์</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,480 +12,452 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Prompt', sans-serif;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 30%, #16213e 60%, #0f0f1e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            position: relative;
+                /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
-        /* copy หาพ่องพี่หรอครับ */
-        /* พื้นหลังอากาศมีดาว */
-        .space-bg {
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Parallax Stars */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            overflow: hidden;
             pointer-events: none;
+            z-index: 0;
         }
-        /* copy หาพ่องพี่หรอครับ */
-        /* ดาวกระพริบ */
+
         .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Shooting Stars */
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-1000px) translateY(500px);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: starTwinkle 3s ease-in-out infinite;
-        }
-
-        /* copy หาพ่องพี่หรอครับ */
-        /* ดาวตก */
-        .shooting-star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #ffffff;
+            background: white;
             border-radius: 50%;
             box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: shoot 3s linear infinite;
         }
 
-        .shooting-star::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
-            transform: translateX(3px);
-        }
-
-        @keyframes shootingStar {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-500px, 500px);
-                opacity: 0;
-            }
-        }
-
-        .shooting-star {
-            animation: shootingStar 3s ease-out infinite;
-        }
-
-        .shooting-star:nth-child(151) { top: 10%; left: 90%; animation-delay: 0s; animation-duration: 2s; }
-        .shooting-star:nth-child(152) { top: 20%; left: 80%; animation-delay: 3s; animation-duration: 2.5s; }
-        .shooting-star:nth-child(153) { top: 30%; left: 95%; animation-delay: 6s; animation-duration: 2.2s; }
-        .shooting-star:nth-child(154) { top: 5%; left: 70%; animation-delay: 9s; animation-duration: 2.8s; }
-        .shooting-star:nth-child(155) { top: 15%; left: 85%; animation-delay: 12s; animation-duration: 2.3s; }
-        .shooting-star:nth-child(156) { top: 25%; left: 75%; animation-delay: 15s; animation-duration: 2.4s; }
-        .shooting-star:nth-child(157) { top: 35%; left: 88%; animation-delay: 18s; animation-duration: 2.6s; }
-        .shooting-star:nth-child(158) { top: 12%; left: 92%; animation-delay: 21s; animation-duration: 2.1s; }
-
-        @keyframes starTwinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
-        /* copy หาพ่องพี่หรอครับ */
-        /* ดาวตก */
-        .shooting-star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: linear-gradient(90deg, #ffffff, transparent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-            animation: shootingStar 3s ease-out infinite;
-        }
-
-        .shooting-star::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
-            transform: translateX(3px);
-        }
-
-        @keyframes shootingStar {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-500px, 500px);
-                opacity: 0;
-            }
-        }
-
-        .shooting-star:nth-child(1) { top: 10%; left: 90%; animation-delay: 0s; animation-duration: 2s; }
-        .shooting-star:nth-child(2) { top: 20%; left: 80%; animation-delay: 3s; animation-duration: 2.5s; }
-        .shooting-star:nth-child(3) { top: 30%; left: 95%; animation-delay: 6s; animation-duration: 2.2s; }
-        .shooting-star:nth-child(4) { top: 5%; left: 70%; animation-delay: 9s; animation-duration: 2.8s; }
-        .shooting-star:nth-child(5) { top: 15%; left: 85%; animation-delay: 12s; animation-duration: 2.3s; }
-        
-        /* copy หาพ่องพี่หรอครับ */
-        /* กรอบสี่เหลี่ยม */
-        .main-container {
-            background: rgba(15, 15, 30, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 1400px;
-            min-height: 600px;
-            box-shadow: 
-                0 0 40px rgba(100, 150, 255, 0.2),
-                0 0 80px rgba(150, 200, 255, 0.1),
-                inset 0 0 60px rgba(255, 255, 255, 0.03);
-            overflow: hidden;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px;
             position: relative;
             z-index: 1;
         }
-        
-        /* copy หาพ่องพี่หรอครับ */
-        /* เอฟเฟกต์ขอบเรืองแสงนุ่มนวล */
-        .main-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, 
-                rgba(100, 150, 255, 0.3) 0%, 
-                rgba(150, 200, 255, 0.2) 25%,
-                transparent 50%,
-                rgba(200, 220, 255, 0.2) 75%,
-                rgba(150, 180, 255, 0.3) 100%);
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.5;
-            animation: borderShimmer 8s linear infinite;
-            background-size: 200% 200%;
-        }
 
-        @keyframes borderShimmer {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* copy หาพ่องพี่หรอครับ */
-        /* Header Navigation */
+        /* Header */
         header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            padding: 30px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            background: transparent;
+            padding: 20px 0;
+            margin-bottom: 40px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .logo span:hover {
+            transform: translateY(-3px);
+        }
+
+        nav a {
             color: #fff;
-            text-shadow: 0 0 20px rgba(150, 200, 255, 0.8);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        nav ul li a {
-            color: #e0e0e0;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 300;
-            transition: all 0.3s;
-            position: relative;
+            margin-left: 30px;
+            transition: color 0.3s ease;
+            font-size: 16px;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #8ec5fc, #e0c3fc);
-            transition: width 0.3s;
-            box-shadow: 0 0 10px rgba(142, 197, 252, 0.8);
+        nav a:hover {
+            color: #667eea;
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        nav ul li a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(150, 200, 255, 0.8);
-        }
-        
-        /* copy หาพ่องพี่หรอครับ */
         /* Hero Section */
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 100px 6% 60px;
-            min-height: 600px;
+            gap: 80px;
+            margin-bottom: 80px;
+            padding: 40px 0;
         }
-        
-        /* copy หาพ่องพี่หรอครับ */
-        /* Hero Image */
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #8ec5fc;
+            margin-bottom: 20px;
+            min-height: 2rem;
+            font-weight: 500;
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            border-right: 2px solid #667eea;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .hero-content > p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 25px;
+        }
+
+        /* Image Container */
         .hero-image {
-            flex: 0 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-right: 80px;
+            flex-shrink: 0;
         }
 
         .image-container {
             position: relative;
-            width: 320px;
-            height: 320px;
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
         }
 
-        /* copy หาพ่องพี่หรอครับ */
-        /* วงกลมสีฟ้า-ม่วง */
         .circle-gradient {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4e73df 100%);
-            border-radius: 50%;
-            opacity: 0.9;
-            animation: spaceGlow 6s ease-in-out infinite;
-            box-shadow: 
-                0 0 40px rgba(102, 126, 234, 0.6),
-                0 0 80px rgba(118, 75, 162, 0.4),
-                inset 0 0 60px rgba(255, 255, 255, 0.1);
-        }
-
-        @keyframes spaceGlow {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 
-                    0 0 40px rgba(102, 126, 234, 0.6),
-                    0 0 80px rgba(118, 75, 162, 0.4),
-                    inset 0 0 60px rgba(255, 255, 255, 0.1);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 
-                    0 0 60px rgba(142, 197, 252, 0.8),
-                    0 0 120px rgba(118, 75, 162, 0.6),
-                    inset 0 0 80px rgba(255, 255, 255, 0.2);
-            }
-        }
-
-        /* copy หาพ่องพี่หรอครับ */
-        /* วงแสงโคจร */
-        .circle-gradient::before {
-            content: '';
             position: absolute;
             width: 130%;
             height: 130%;
             top: -15%;
             left: -15%;
             border-radius: 50%;
-            border: 2px solid rgba(150, 200, 255, 0.3);
-            animation: orbit 12s linear infinite;
+            background: 
+                radial-gradient(circle at 50% 50%, transparent 35%, rgba(102, 126, 234, 0.6) 40%, rgba(118, 75, 162, 0.5) 50%, rgba(76, 35, 102, 0.4) 60%, transparent 75%),
+                radial-gradient(circle at 50% 50%, rgba(20, 20, 40, 0.9) 0%, rgba(10, 10, 20, 0.7) 30%, transparent 45%);
+            filter: blur(20px);
+            animation: blackHoleRotate 8s linear infinite, pulse 3s ease-in-out infinite;
+            z-index: 0;
         }
 
-        .circle-gradient::after {
-            content: '';
+        @keyframes blackHoleRotate {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.05);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        /* Accretion Disk Effect */
+        .accretion-disk {
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(102, 126, 234, 0.3) 10%,
+                rgba(118, 75, 162, 0.4) 20%,
+                rgba(150, 50, 200, 0.3) 30%,
+                transparent 40%,
+                transparent 60%,
+                rgba(102, 126, 234, 0.3) 70%,
+                rgba(118, 75, 162, 0.4) 80%,
+                rgba(150, 50, 200, 0.3) 90%,
+                transparent 100%
+            );
+            animation: accretionSpin 6s linear infinite;
+            filter: blur(15px);
+            z-index: 0;
+        }
+
+        @keyframes accretionSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Event Horizon */
+        .event-horizon {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            top: -5%;
+            left: -5%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 60%);
+            animation: horizonPulse 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes horizonPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.03);
+                opacity: 0.9;
+            }
+        }
+
+        /* Gravitational Lensing */
+        .gravitational-lensing {
             position: absolute;
             width: 150%;
             height: 150%;
             top: -25%;
             left: -25%;
             border-radius: 50%;
-            border: 1px solid rgba(180, 220, 255, 0.2);
-            animation: orbit 18s linear infinite reverse;
+            border: 2px solid transparent;
+            background: 
+                radial-gradient(circle at 50% 50%, transparent 45%, rgba(102, 126, 234, 0.2) 48%, transparent 51%),
+                radial-gradient(circle at 50% 50%, transparent 55%, rgba(118, 75, 162, 0.15) 58%, transparent 61%);
+            animation: lensingEffect 5s ease-in-out infinite;
+            z-index: 0;
         }
 
-        @keyframes orbit {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes lensingEffect {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
 
         .profile-img {
             position: absolute;
-            bottom: -0px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            height: auto;
-            z-index: 1;
-            filter: drop-shadow(0 10px 30px rgba(100, 150, 255, 0.6));
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 30%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 18px 50px rgba(102, 126, 234, 0.35);
         }
 
-        /* copy หาพ่องพี่หรอครับ */
-        /* Hero Content */
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            margin-bottom: 10px;
-            line-height: 1.2;
-            font-weight: 400;
-            color: #ffffff;
-        }
-
-        .hero-content h1 .highlight {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
-        }
-
-        .hero-content .subtitle {
-            font-size: 20px;
-            background: linear-gradient(90deg, #8ec5fc, #e0c3fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .hero-content p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #b0b0b0;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        /* copy หาพ่องพี่หรอครับ */
         /* Social Icons */
         .social-icons {
             display: flex;
             gap: 15px;
-            margin-bottom: 35px;
+            margin: 35px 0 30px 0;
         }
 
-        .social-icons a {
-            width: 42px;
-            height: 42px;
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             text-decoration: none;
-            transition: all 0.3s;
-            font-size: 16px;
-            position: relative;
-            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 20px;
         }
 
-        .social-icons a::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            transform: scale(0);
-            transition: transform 0.3s;
-            z-index: -1;
+        .social-icon:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            border-color: transparent;
         }
 
-        .social-icons a:hover::before {
-            transform: scale(1);
-        }
-
-        .social-icons a:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        /* copy หาพ่องพี่หรอครับ */
         /* Button */
         .btn {
             display: inline-block;
-            padding: 12px 38px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            color: #fff;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
             font-size: 15px;
-            font-weight: 300;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         .btn:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 30px rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
         }
 
-        
-        /* copy หาพ่องพี่หรอครับ */
+        /* Skills Section */
+        .skills-section {
+            margin: 80px 0;
+            padding: 60px 0;
+        }
+
+        .skills-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .skill-icon {
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .skill-icon.html { color: #E34F26; }
+        .skill-icon.js { color: #F7DF1E; }
+        .skill-icon.python { color: #3776AB; }
+        .skill-icon.react { color: #61DAFB; }
+        .skill-icon.lua { color: #2C2D72; }
+        .skill-icon.cpp { color: #00599C; }
+
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .skill-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: width 1.5s ease-out;
+            width: 0;
+        }
+
+        .skill-percentage {
+            text-align: right;
+            margin-top: 8px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* Spotify Player */
         .spotify-player {
-            margin-top: 30px;
+            margin-top: 25px;
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
         }
 
         .spotify-player iframe {
@@ -497,221 +465,93 @@
             width: 100%;
         }
 
-        /* copy หาพ่องพี่หรอครับ */
-        /* Profile image styling */
-        .image-container {
-            position: relative;
-            width: 320px;
-            height: 320px;
-        }
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            box-shadow: 0 18px 50px rgba(102, 126, 234, 0.35), 0 0 0 8px rgba(118, 75, 162, 0.18);
-            position: relative;
-            z-index: 2;
-        }
-
-/* copy หาพ่องพี่หรอครับ */       
-/* Responsive */
-        @media (max-width: 1200px) {
-            .main-container { max-width: 95%; }
-            .hero { padding: 100px 5% 50px; }
-            .hero-image { margin-right: 50px; }
-            .image-container { width: 280px; height: 280px; }
-            .hero-content h1 { font-size: 44px; }
-        }
-
-        @media (max-width: 968px) {
-            header { padding: 25px 5%; }
-            nav ul { gap: 20px; }
-            nav ul li a { font-size: 13px; }
-            .hero { padding: 100px 4% 40px; }
-            .hero-image { margin-right: 30px; }
-            .image-container { width: 250px; height: 250px; }
-            .hero-content h1 { font-size: 38px; }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .main-container { 
-                border-radius: 15px; 
-                min-height: auto;
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
             }
-            .hero { 
-                flex-direction: column; 
-                padding: 80px 5% 40px; 
-                text-align: center; 
-                min-height: auto;
+
+            .hero-content {
+                text-align: center;
             }
-            .hero-image { margin-right: 0; margin-bottom: 40px; }
-            .image-container { width: 240px; height: 240px; }
-            .hero-content h1 { 
-                font-size: 36px; 
-                line-height: 1.3;
+
+            h1 {
+                font-size: 2.5rem;
             }
-            .hero-content p { 
-                font-size: 14px;
-                line-height: 1.7;
+
+            .subtitle {
+                font-size: 1.3rem;
             }
-            .social-icons { 
-                justify-content: center;
-                gap: 12px;
+
+            .image-container {
+                width: 250px;
+                height: 250px;
             }
-            .social-icons a {
-                width: 38px;
-                height: 38px;
-                font-size: 14px;
+
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
-            .btn {
-                padding: 10px 30px;
-                font-size: 14px;
-            }
-            nav ul { 
-                gap: 15px; 
-            }
-            nav ul li a { 
-                font-size: 12px; 
+
+            nav {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
             body { padding: 15px 5px; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.1rem; }
+
             .spotify-player {
                 max-width: 100%;
                 margin-top: 25px;
             }
-            .main-container { 
-                border-radius: 12px;
-                min-height: auto;
-            }
-            header { 
-                padding: 20px 5%; 
-            }
-            .logo { 
-                font-size: 20px; 
-            }
-            nav ul { 
-                gap: 10px; 
-            }
-            nav ul li a { 
-                font-size: 11px; 
-            }
-            .hero { 
-                padding: 70px 4% 30px;
-                min-height: auto;
-            }
-            .hero-content h1 { 
-                font-size: 28px; 
-            }
-            .hero-content .subtitle { 
-                font-size: 16px; 
-            }
-            .hero-content p {
-                font-size: 13px;
-            }
-            .image-container { 
-                width: 200px; 
-                height: 200px; 
-            }
-            .social-icons {
-                gap: 10px;
-            }
-            .social-icons a {
-                width: 35px;
-                height: 35px;
-                font-size: 13px;
-            }
-            .btn {
-                padding: 9px 25px;
-                font-size: 13px;
-            }
-        }
 
-        @media (max-width: 360px) {
-            .hero-content h1 { 
-                font-size: 24px; 
+            .image-container {
+                width: 220px;
+                height: 220px;
             }
-            .hero-content .subtitle { 
-                font-size: 15px; 
-            }
-            .image-container { 
-                width: 180px; 
-                height: 180px; 
-            }
-        }
-
-        html { scroll-behavior: smooth; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-content, .hero-image { animation: fadeInUp 1s ease-out; }
-        .main-container { animation: fadeIn 0.8s ease-out; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <!-- Space Background with Stars -->
-    <div class="space-bg" id="starfield"></div>
+    <!-- Parallax Stars Background -->
+    <div class="stars" id="stars"></div>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Header -->
+    <div class="container">
         <header>
-            <div class="logo">Mark</div>
+            <div class="logo">
+                <span style="color: #FF5F57;">🔴</span><span style="color: #FFBD2E;">🟡</span><span style="color: #28CA42;">🟢</span>
+            </div>
             <nav>
-                <ul>
-                    <li><a href="#home">หน้าแรก</a></li>
-                </ul>
+                <a href="#home">หน้าแรก</a>
+                <a href="#skills">ทักษะ</a>
+                
             </nav>
         </header>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-image">
-                <div class="image-container">
-                    <div class="circle-gradient"></div>
-                    <img src="myme.png" class="profile-img" alt="Profile" />
-                </div>
-            </div>
-
+        <section class="hero" id="home">
             <div class="hero-content">
                 <h1>สวัสดี ผมชื่อ <span class="highlight">มาร์ค</span></h1>
-                <p class="subtitle">โปรแกรมเมอร์ฟรีแลนซ์</p>
-                <p>ยินดีต้อนรับสู่พอร์ตโฟลิโอของผม ผมเป็นโปรแกรมเมอร์ฟรีแลนซ์ที่เชี่ยวชาญด้านการพัฒนาเว็บแอปพลิเคชัน Web Development และ Full Stack ไม่ว่าจะเป็นระบบอะไรก็ตาม พร้อมช่วยให้ไอเดียของคุณเป็นจริง (มั้ง) 😅</p>
+                <p class="subtitle"><span class="typing-text" id="typing"></span></p>
+                <p>ยินดีต้อนรับสู่พอร์ตโฟลิโอของผม ผมเป็นโปรแกรมเมอร์ฟรีแลนซ์ที่เชี่ยวชาญด้านการพัฒนาเว็บแอปพลิเคชัน Web Development และ Full Stack พร้อมสร้างสรรค์โปรเจกต์ที่ตอบโจทย์ธุรกิจของคุณด้วยเทคโนโลยีที่ทันสมัย</p>
 
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/khi.dinosear.pi.nxk.lok.564562/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/x2shift/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.twitch.tv/exzerozyt" target="_blank" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
-                    <a href="https://www.youtube.com/@x2Shift" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.xbox.com/th-TH/play/user/ExZerozYT" target="_blank" aria-label="Xbox"><i class="fab fa-xbox"></i></a>
+                    <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
+                    <a href="#" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon" title="Xbox"><i class="fab fa-xbox"></i></a>
                 </div>
 
-                <!-- Spotify Music Player -->
-                <!-- วิธีใส่ลิงก์เพลง Spotify:
-                     1. เปิด Spotify และค้นหาเพลงที่ต้องการ
-                     2. คลิกไอคอน ... (จุด 3 จุด) ที่เพลง
-                     3. เลือก Share > Embed track
-                     4. คัดลอกโค้ด iframe มาใส่แทนที่ตรงนี้
-                     5. หรือเปลี่ยนเฉพาะส่วน track/[TRACK_ID] ในลิงก์
+                
 
-                     ตัวอย่าง: https://open.spotify.com/track/[TRACK_ID]
-                -->
                 <div class="spotify-player">
-                    <!-- แทนที่ src ด้านล่างด้วยลิงก์ embed เพลง Spotify ของคุณ -->
-                    <iframe 
-                        src="https://open.spotify.com/embed/album/21LG4vnSC0pmcDaB1ICoi2?utm_source=generator" 
+                    <iframe style="border-radius:12px" 
+                        src="https://open.spotify.com/embed/album/1f2s3KUwsPLLy22vbOXg7g?utm_source=generato" 
                         width="100%" 
                         height="152" 
                         frameBorder="0" 
@@ -721,40 +561,195 @@
                     </iframe>
                 </div>
             </div>
+
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="circle-gradient"></div>
+                    <img src="myme.png" class="profile-img" alt="Profile">
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section" id="skills">
+            <h2>ทักษะและความเชี่ยวชาญ</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="90">
+                    <div class="skill-header">
+                        <div class="skill-icon html">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-name">HTML</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">90%</div>
+                </div>
+
+                <div class="skill-card" data-skill="85">
+                    <div class="skill-header">
+                        <div class="skill-icon js">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">85%</div>
+                </div>
+
+                <div class="skill-card" data-skill="88">
+                    <div class="skill-header">
+                        <div class="skill-icon python">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">88%</div>
+                </div>
+
+                <div class="skill-card" data-skill="82">
+                    <div class="skill-header">
+                        <div class="skill-icon react">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-name">React</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">82%</div>
+                </div>
+
+                <div class="skill-card" data-skill="75">
+                    <div class="skill-header">
+                        <div class="skill-icon lua">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="skill-name">Lua</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">75%</div>
+                </div>
+
+                <div class="skill-card" data-skill="80">
+                    <div class="skill-header">
+                        <div class="skill-icon cpp">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-name">C++</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-percentage">80%</div>
+                </div>
+            </div>
         </section>
     </div>
 
     <script>
-        // Create stars
-        const starfield = document.getElementById('starfield');
+        // Typing Animation with Loop
+        const text = "โปรแกรมเมอร์ฟรีแลนซ์";
+        const typingElement = document.getElementById("typing");
+        let index = 0;
+        let isDeleting = false;
 
-        // สร้างดาวกระพริบ 150 ดวง
-        for (let i = 0; i < 150; i++) {
+        function typeWriter() {
+            if (!isDeleting && index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150);
+            } else if (!isDeleting && index === text.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, 3000);
+            } else if (isDeleting && index > 0) {
+                typingElement.textContent = text.substring(0, index - 1);
+                index--;
+                setTimeout(typeWriter, 100);
+            } else if (isDeleting && index === 0) {
+                isDeleting = false;
+                setTimeout(typeWriter, 1000);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+
+        // Parallax Stars Effect
+        const starsContainer = document.getElementById('stars');
+        const starCount = 100;
+
+        // Create stars
+        for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            starfield.appendChild(star);
+            starsContainer.appendChild(star);
         }
 
-        // สร้างดาวตก 8 ดวง
-        for (let i = 0; i < 8; i++) {
+        // Create shooting stars
+        for (let i = 0; i < 3; i++) {
             const shootingStar = document.createElement('div');
             shootingStar.className = 'shooting-star';
-            starfield.appendChild(shootingStar);
+            shootingStar.style.left = Math.random() * 100 + '%';
+            shootingStar.style.top = Math.random() * 50 + '%';
+            shootingStar.style.animationDelay = Math.random() * 5 + 's';
+            shootingStar.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(shootingStar);
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const stars = document.querySelectorAll('.star');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            stars.forEach((star, index) => {
+                const speed = (index % 3 + 1) * 10;
+                const xMove = (x - 0.5) * speed;
+                const yMove = (y - 0.5) * speed;
+                star.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+
+        // Skills Animation on Scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillCard = entry.target;
+                    const percentage = skillCard.getAttribute('data-skill');
+                    const skillBar = skillCard.querySelector('.skill-bar');
+
+                    setTimeout(() => {
+                        skillBar.style.width = percentage + '%';
+                    }, 200);
+
+                    observer.unobserve(skillCard);
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card').forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
